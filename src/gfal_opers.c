@@ -180,8 +180,6 @@ static int gfalfs_open(const char *path, struct fuse_file_info *fi)
 static int gfalfs_create(const char * path, mode_t mode, struct fuse_file_info * fi) {
     gfal_posix_clear_error();
     char buff[2048];
-    char err_buff[1024];
-    int ret = -1;
     char surl[1024];
     char lfn[1024];
     GError* error = NULL;
@@ -189,8 +187,7 @@ static int gfalfs_create(const char * path, mode_t mode, struct fuse_file_info *
     char date[100];
    
     gfalfs_construct_path(path, buff, 2048);
-     gfalfs_log(NULL, G_LOG_LEVEL_MESSAGE,"gfalfs_open path %s %d", (char*) path, (int) i);
-
+  
     //create a context to read from configure file in /etc/gfal2.d/lfc_plugin.conf
     gfal2_context_t context_config;
     if ((context_config = gfal2_context_new(&error)) == NULL) {
@@ -579,7 +576,7 @@ struct fuse_operations gfal_oper = {
     .release = gfalfs_release,
     .releasedir = gfalfs_releasedir,
     .access = gfalfs_access,
-    .mknod = gfalfs_create,
+    .create = gfalfs_create,
     .mkdir = gfalfs_mkdir,
     .rmdir = gfalfs_rmdir,
     .chmod = gfalfs_chmod,
