@@ -182,7 +182,6 @@ static int gfalfs_create(const char * path, mode_t mode, struct fuse_file_info *
     char surl[1024];
     char lfn[1024];
     GError* error = NULL;
-    gfal_set_verbose(3);
     char date[100];
    
     gfalfs_construct_path(path, buff, 2048);
