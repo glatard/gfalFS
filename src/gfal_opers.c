@@ -23,7 +23,6 @@
 
 #include <string.h>
 #include <errno.h>
-//#include "gfal_api.h"
 
 #include <gfal_api.h>
 
