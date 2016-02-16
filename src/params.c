@@ -22,8 +22,8 @@
 
 #include "params.h"
 
-static gboolean verbose_mode = FALSE;
-static gboolean debug_mode = FALSE;
+static gboolean verbose_mode = TRUE;
+static gboolean debug_mode = TRUE;
 
 /**
  * define verbose mode for gfalFS and GFAL 2.0
