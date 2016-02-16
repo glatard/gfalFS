@@ -32,7 +32,7 @@ set(VERSION_STRING ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH})
 # libs checks
 pkg_check_modules(GLIB2_PKG REQUIRED glib-2.0)
 pkg_check_modules(GTHREAD2_PKG REQUIRED gthread-2.0)
-
+pkg_check_modules(GFAL2_TRANSFER_PKG REQUIRED gfal_transfer)
 pkg_check_modules(GFAL2_PKG REQUIRED gfal2)
 
 pkg_check_modules(FUSE_PKG REQUIRED fuse)
@@ -41,7 +41,7 @@ pkg_check_modules(FUSE_PKG REQUIRED fuse)
 FILE(GLOB src_main "src/*.c")
 
 include_directories("src/" ${GLIB2_PKG_INCLUDE_DIRS} 
-						${GTHREAD2_PKG_INCLUDE_DIRS} ${GFAL2_PKG_INCLUDE_DIRS}
+						${GTHREAD2_PKG_INCLUDE_DIRS} ${GFAL2_PKG_INCLUDE_DIRS} ${GFAL2_TRANSFER_PKG_LIBRARIES}
 						 ${FUSE_PKG_INCLUDE_DIRS})
 add_definitions( -D_GFALFS_VERSION=\"${VERSION_STRING}\" ${GLIB2_PKG_CFLAGS}
 				${GTHREAD2_PKG_CFLAGS} ${GFAL2_PKG_CFLAGS} ${FUSE_PKG_CFLAGS} 
@@ -49,7 +49,7 @@ add_definitions( -D_GFALFS_VERSION=\"${VERSION_STRING}\" ${GLIB2_PKG_CFLAGS}
 
 add_executable(gfalFS ${src_main})
 target_link_libraries(gfalFS ${GLIB2_PKG_LIBRARIES} 
-						${GTHREAD2_PKG_LIBRARIES} ${GFAL2_PKG_LIBRARIES}
+						${GTHREAD2_PKG_LIBRARIES} ${GFAL2_PKG_LIBRARIES} ${GFAL2_TRANSFER_PKG_LIBRARIES}
                                                  ${FUSE_PKG_LIBRARIES} m)
 
 
